@@ -1,4 +1,4 @@
-package DataTypes.Transitions;
+package DataTypes.Casting;
 
 public class ParsingValues {
     public static void main(String[] args) {
