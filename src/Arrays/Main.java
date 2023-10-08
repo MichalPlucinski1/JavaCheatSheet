@@ -28,7 +28,7 @@ public class Main {
         }
 
         //after sorting
-        int position = Arrays.binarySearch(classicArr, 2); // doe's not guarantee first position
+        int position = Arrays.binarySearch(classicArr, 2); // does not guarantee first position
         System.out.println(Arrays.toString(classicArr));
 
         Object objectVariable = classicArr;
@@ -88,7 +88,7 @@ public class Main {
 
 
         //making array from ArrayList
-        ArrayList<String> stringList = new ArrayList<>(List.of("Jan", "Feb", "Mar"));
+        ArrayList<String> stringList = new ArrayList<>(List.of("Jan", "Feb", "Mar", "complete"));
         String[] stringArray = stringList.toArray(new String[0]);
 
 
