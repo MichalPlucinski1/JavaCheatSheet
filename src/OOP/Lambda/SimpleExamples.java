@@ -2,6 +2,7 @@ package OOP.Lambda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 public class SimpleExamples {
     interface StringFunction {
@@ -35,10 +36,20 @@ public class SimpleExamples {
         });
 
         int result = calculator((a,b) -> a + b, 5, 2); // first argument is a lambda. it guesses T as int, becouse of return
-    }
+        var result3 = calculator(
+                (a,b) -> a.toUpperCase() + " " + b.toUpperCase(),
+                "Ralph", "Kramden");
 
+    }
+/*
     public static <T> T calculator(Operation <T> function, T value1, T value2){
         T result = function.operate(value1, value2);
+        System.out.println("result of operation: " + result);
+        return result;
+    }
+*/   //same code, but no need for Operation interface
+    public static <T> T calculator(BinaryOperator<T> function, T value1, T value2){
+        T result = function.apply(value1, value2);
         System.out.println("result of operation: " + result);
         return result;
     }
