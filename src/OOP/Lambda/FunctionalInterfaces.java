@@ -3,6 +3,7 @@ package OOP.Lambda;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
@@ -58,21 +59,57 @@ public class FunctionalInterfaces {
         list.removeIf(s -> s.startsWith("ea"));
         list.forEach(s -> System.out.println(s));
 
-        //function unary
-        list.replaceAll(s->s.charAt(0) + " - " + s.toUpperCase());
+        //function  (by value)
         System.out.println("-------");
         System.out.println("Functional");
         System.out.println("-------");
+        list.replaceAll(s->s.charAt(0) + " - " + s.toUpperCase());
         list.forEach(s -> System.out.println(s));
 
 
+        String[] emptyStrings = new String[10];
+        System.out.println(Arrays.toString(emptyStrings));
+        Arrays.fill(emptyStrings,"");
+        System.out.println(Arrays.toString(emptyStrings));
 
+        // function by index
+        Arrays.setAll(emptyStrings, (i) -> "" + (i + 1) + ". ");
+        System.out.println(Arrays.toString(emptyStrings));
 
+        Arrays.setAll(emptyStrings, (i) -> "" + (i + 1) + ". "
+                        + switch (i) {
+                    case 0 -> "one";
+                    case 1 -> "two";
+                    case 2 -> "three";
+                    default -> "";
+                }
+        );
+        System.out.println(Arrays.toString(emptyStrings));
 
+        //suplier
+        System.out.println("-------");
+        System.out.println("Supplier");
+        System.out.println("-------");
+
+        String[] names = {"Ann", "Bob", "Carol", "David", "Ed", "Fred"};
+        String[] randomList = randomlySelectedValues(15, names,
+                () -> new Random().nextInt(0, names.length));
+        System.out.println(Arrays.toString(randomList));
     }
 
 
     public static <T> void processPoint(T t1, T t2, BiConsumer<T,T> consumer) {
         consumer.accept(t1, t2);
+    }
+
+    public static String[] randomlySelectedValues(int count,
+                                                  String[] values,
+                                                  Supplier<Integer> s) {
+
+        String[] selectedValues = new String[count];
+        for (int i = 0; i < count; i++) {
+            selectedValues[i] = values[s.get()];
+        }
+        return selectedValues;
     }
 }
