@@ -86,7 +86,7 @@ public class FunctionalInterfaces {
         );
         System.out.println(Arrays.toString(emptyStrings));
 
-        //suplier
+        //supplier
         System.out.println("-------");
         System.out.println("Supplier");
         System.out.println("-------");
