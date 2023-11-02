@@ -1,5 +1,6 @@
 package OOP;
 
+import java.util.Arrays;
 import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
@@ -22,9 +23,19 @@ public class MethodReference {
         calculator(Double::sum, 10.5, 25.3);
         Supplier<PlainOld> reference1 = ()-> new PlainOld();
         Supplier<PlainOld> reference2 = PlainOld::new;
+        PlainOld newPojo = reference2.get();
+
+        System.out.println("\n Gettign array");
+        PlainOld[] pojo1 = seedArray(PlainOld::new, 10);
     }
     private static <T> void calculator(BinaryOperator<T> function, T value1, T value2){
         T result = function.apply(value1, value2);
         System.out.println("result of operation  " + result);
+    }
+
+    private static PlainOld[] seedArray(Supplier<PlainOld> reference, int count){
+        PlainOld[] array = new PlainOld[count];
+        Arrays.setAll(array, i -> reference.get());
+        return array;
     }
 }
